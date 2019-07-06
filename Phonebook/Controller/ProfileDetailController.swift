@@ -8,21 +8,35 @@
 
 import UIKit
 
-class ProfileDetailController: UIViewController, PassData {
+protocol PassData {
+    func data (object: [String:String])
+}
+
+ 
+class ProfileDetailController: UIViewController {
   
     @IBOutlet weak var emailTxt: UILabel!
     @IBOutlet weak var mobileTxt: UILabel!
     @IBOutlet weak var lastNameTxt: UILabel!
     @IBOutlet weak var firstNameTxt: UILabel!
+    
+    var people: People? {
+        didSet {
+            emailTxt.text = people?.email
+            mobileTxt.text = people?.mobile
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    func data(object: [String : String]) {
-        firstNameTxt.text = object["firstname"]
-        lastNameTxt.text = object["lastname"]
-        mobileTxt.text = object["mobile"]
-        emailTxt.text = object["email"]
+      
+    @IBAction func editContactButton(_ sender: Any) {
+        let editVC = self.storyboard?.instantiateViewController(withIdentifier: "ContactEditController") as! ContactEditController
+        navigationController?.pushViewController(editVC, animated: true)
+        
     }
 }

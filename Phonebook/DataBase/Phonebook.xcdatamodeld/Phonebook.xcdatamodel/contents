@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="People" inverseName="lists" inverseEntity="People" syncable="YES"/>
+    </entity>
     <entity name="People" representedClassName="People" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="peoples" inverseEntity="List" syncable="YES"/>
     </entity>
     <elements>
-        <element name="People" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="People" positionX="-415.18359375" positionY="-142.5234375" width="128" height="120"/>
+        <element name="List" positionX="-63" positionY="9" width="128" height="75"/>
     </elements>
 </model>

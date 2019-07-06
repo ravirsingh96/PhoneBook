@@ -9,24 +9,24 @@
 import UIKit
 import CoreData
 
-protocol PassData {
-    func data (object: [String:String])
-}
-
-
 class ViewController: UIViewController {
   
     @IBOutlet weak var peopleListView: UITableView!
     var arrapeople = [People]()
+   // var list: List?
     var delegate:PassData!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        arrapeople = DataBaseHelper.shareInstance.getAllData()
-        peopleListView.reloadData()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      arrapeople = DataBaseHelper.shareInstance.getAllData()
+        peopleListView.reloadData()
     }
     
     @IBAction func newCntctButton(_ sender: UIButton) {
@@ -69,6 +69,13 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        if arrapeople.count != nil {
+            let cellVC = self.storyboard?.instantiateViewController(withIdentifier: "profileVC") as! ProfileDetailController
+            navigationController?.pushViewController(cellVC, animated: true)
+        }
+        
+        
     
 //        let dict = [
 //
